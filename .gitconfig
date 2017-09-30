@@ -1,0 +1,11 @@
+[user]
+  name = Curt Zirzow
+  email = czirzow@gmail.com
+[color]
+  ui = true
+[diff]
+  tool = vimdiff
+[branch]
+  autosetuprebase = always
+[push]
+  default = current
