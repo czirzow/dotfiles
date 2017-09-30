@@ -1,6 +1,11 @@
 [user]
   name = Curt Zirzow
   email = czirzow@gmail.com
+[alias]
+  blog = log --pretty=oneline --abbrev-commit
+  mlog = log --pretty=format:'%h %s <%an>'  --abbrev-commit --graph --abbrev-commit --date=relative --no-color
+  ggg = log --graph --pretty=format:'%h reset %s <%an>' --abbrev-commit --date=relative
+  lgg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit -
 [color]
   ui = true
 [diff]
