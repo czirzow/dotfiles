@@ -15,7 +15,7 @@ bind '"\e[B": history-search-forward'
 # dont need this for SS, should be set per box
 # PS1="\u@\h.ma01:\w\$ "
 
-alias dir='ls -laF --color=auto'
+alias dir='CLICOLOR_FORCE=1 ls -laFGw | less -XR'
 alias ackless='ack --group --color \!* | less -XR'
 
 export PAGER="less -XR"
