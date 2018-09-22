@@ -134,9 +134,8 @@ set t_Co=256
 "let xterm16_colormap    = 'allblue'        " 'standard' is default
 "colors xterm16
 
-"let g:solarized_termcolors=256
 syntax enable
 set background=dark
-"colorscheme solarized
+colorscheme solarized8_high
 
 
