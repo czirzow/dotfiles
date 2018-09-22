@@ -1,0 +1,19 @@
+[user]
+	name = Curt Zirzow
+	email = czirzow@shutterstock.com
+[alias]
+	blog = log --pretty=oneline --abbrev-commit
+	mlog = log --pretty=format:'%h %s <%an>'  --abbrev-commit --graph --abbrev-commit --date=relative --no-color
+	ggg = log --graph --pretty=format:'%h reset %s <%an>' --abbrev-commit --date=relative
+	lgg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	assume = update-index
+	unassume = update-index
+	assumed = git config --global alias.unassume update-index --no-assume-unchanged ls-files -v | grep ^h | cut -c 3-
+[color]
+	ui = true
+[diff]
+	tool = vimdiff
+[branch]
+	autosetuprebase = always
+[push]
+	default = current

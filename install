@@ -1,0 +1,41 @@
+#!/bin/sh
+
+dotfiles="\
+  .bashrc\
+  .bash_profile\
+  .gitconfig\
+  .vim\
+  .vimrc\
+  .cshrc\
+  .tmux.conf\
+"
+
+home=~ 
+cwd=`pwd`
+
+copy_file() {
+	message=$1
+	from=$2
+	to=$3
+
+	echo "${message}: ${from} -> ${to}"
+	cp -Rp ${from} ${to}
+}
+
+for dotfile in $dotfiles
+do
+	realfile="${home}/${dotfile}"
+	thisfile="${cwd}/${dotfile}"
+
+	if [ -e $realfile ]; then
+		if [ ! -e "${realfile}.cz" ]; then
+			copy_file "backup" $realfile "${realfile}.cz"
+		fi
+	fi
+
+	copy_file "installing" "${thisfile}" "${realfile}"
+	echo
+
+done
+
+
