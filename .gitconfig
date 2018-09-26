@@ -1,6 +1,6 @@
 [user]
 	name = Curt Zirzow
-	email = czirzow@shutterstock.com
+	email = czirzow@gmail.com
 [alias]
 	blog = log --pretty=oneline --abbrev-commit
 	mlog = log --pretty=format:'%h %s <%an>'  --abbrev-commit --graph --abbrev-commit --date=relative --no-color
