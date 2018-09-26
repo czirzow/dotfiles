@@ -12,7 +12,7 @@ set -o vi
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
-PS1="\u@\h:\w\$ "
+PS1="\u@\h:\w\\$ "
 
 # I've always liked the MSDOS dir command.
 dir () {
