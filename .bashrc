@@ -12,8 +12,7 @@ set -o vi
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
-# dont need this for SS, should be set per box
-# PS1="\u@\h.ma01:\w\$ "
+PS1="\u@\h:\w\$ "
 
 # I've always liked the MSDOS dir command.
 dir () {
