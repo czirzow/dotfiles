@@ -12,7 +12,10 @@ set -o vi
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
-PS1="\u@\h:\[\033[32m\]\w\[\033[00m\]$ "
+parse_git_branch() {
+  [ -d .git ] && git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
+}
+PS1="\u@\h:\[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\]$ "
 
 # I've always liked the MSDOS dir command.
 dir () {
