@@ -18,7 +18,9 @@ ps1_docker_leader() {
 }
 # show current branch name
 ps1_git_branch() {
-  [ -d .git ] && git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
+  # only run 'git branch' if inside of $HOME/git/* path.
+  [[ $PWD == "${HOME}/git/"* ]] && git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
+  #[ -d .git ] && git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
 }
 PS1="\u@\h:\[\033[32m\]\w\[\033[33m\]\$(ps1_git_branch)\e[38;5;122m\$(ps1_docker_leader)\[\033[00m\]$ "
 
