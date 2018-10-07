@@ -2,7 +2,7 @@
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+  . /etc/bashrc
 fi
 
 # User specific aliases and functions
@@ -14,7 +14,7 @@ bind '"\e[B": history-search-forward'
 
 # show who I have set as the leader of my docker swarm.
 ps1_docker_leader() {
-	[ ! -z "$DOCKER_MACHINE_NAME" ] &&  echo "($DOCKER_MACHINE_NAME)"
+  [ ! -z "$DOCKER_MACHINE_NAME" ] &&  echo "($DOCKER_MACHINE_NAME)"
 }
 # show current branch name
 ps1_git_branch() {
@@ -26,7 +26,7 @@ PS1="\u@\h:\[\033[32m\]\w\[\033[33m\]\$(ps1_git_branch)\e[38;5;122m\$(ps1_docker
 
 # I've always liked the MSDOS dir command.
 dir () {
-	CLICOLOR_FORCE=1 ls -laFGw "$@" | less -XR
+  CLICOLOR_FORCE=1 ls -laFGw "$@" | less -XR
 }
 alias ackless='ack --group --color \!* | less -XR'
 
