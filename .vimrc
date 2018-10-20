@@ -11,11 +11,12 @@ set viminfo='20,\"50    " read/write a .viminfo file, don't store more
                         " than 50 lines of registers
 set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
-set ts=2
-set sw=2
+set et                  " in general, we want no tabs.
+set ts=4                " Number of spaces that a tab uses.
+set sw=2                " indentation is usually at 2 chars
 set modeline
 
-set listchars=tab:»·,trail:·,eol:\
+set listchars=tab:Â»\ ,trail:·,eol:\
 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
@@ -126,6 +127,8 @@ endif
 "set foldmethod=marker
 
 filetype indent on
+
+execute pathogen#infect()
 
 " Colors 
 syntax on
