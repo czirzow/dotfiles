@@ -1,20 +1,18 @@
-version 6.3
+version 8.0
+" 2018-10-20
 "
 
-set nocompatible        " Use Vim defaults (much better!)
-set bs=2                " allow backspacing over everything in insert mode
-set ai                  " always set autoindenting on
+" not sure about these:
+"set nocompatible        " Use Vim defaults (much better!)
+"set ai                  " always set autoindenting on
+"
 set nowrap              " don't wrap long lines
 set ic                  " ignore case when searching
-set nobackup            " keep a backup file
-set viminfo='20,\"50    " read/write a .viminfo file, don't store more
-                        " than 50 lines of registers
-set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
 set et                  " in general, we want no tabs.
 set ts=4                " Number of spaces that a tab uses.
 set sw=2                " indentation is usually at 2 chars
-set modeline
+set modeline            " see
 
 set listchars=tab:Â»\ ,trail:·,eol:\
 
@@ -39,13 +37,13 @@ if has("autocmd")
 	map Q gq
 	map <C-J> {Qap}
 
-	"spell check with newsbody 
+	"spell check with newsbody
 	map  \1\2<CR>:e! %<CR>
 	map \1 :w!<CR>
 	map \2 :!newsbody -qs -n % -p aspell check \%f<CR>
 
 	augroup mutt
-		autocmd BufNewFile,BufReadPost mutt-* set tw=67 nocp wrap ts=2 sw=2 et si ai 
+		autocmd BufNewFile,BufReadPost mutt-* set tw=67 nocp wrap ts=2 sw=2 et si ai
 		autocmd BufRead mutt-* 1;/^$/+ " below headers
 	augroup end
 
@@ -57,17 +55,17 @@ if has("autocmd")
 
 	augroup php
 		au!
-		autocmd FileType php,php3  set binary formatoptions=croq cindent comments=s1:/*,mb:*,ex:*/,bO://,:# softtabstop=2 noexpandtab sw=2 
+		autocmd FileType php,php3  set binary formatoptions=croq cindent comments=s1:/*,mb:*,ex:*/,bO://,:# softtabstop=2 noexpandtab sw=2
 		map ;s :!php -l -d display_errors=1 %<CR>
 		map ;r :!php -d display_errors=1 -q %<CR>
 		set binary
 	augroup end
 
 
-	augroup puppet                                                                                                                             
-		au!                                                                                                                                      
-		autocmd BufRead,BufNewFile *.pp set et softtabstop=2 sw=2                                                                                
-	augroup end                                                                                                                                
+	augroup puppet
+		au!
+		autocmd BufRead,BufNewFile *.pp set et softtabstop=2 sw=2
+	augroup end
 
 	augroup gzip
 		" Remove all gzip autocommands
@@ -107,22 +105,6 @@ if has("autocmd")
 	augroup END
 endif
 
-		" Options
-		let php_sql_query = 1       "for SQL syntax highlighting inside strings
-		let php_htmlInStrings = 1       "for HTML syntax highlighting inside strings
-		let php_baselib = 1             "for highlighting baselib functions
-		let php_asp_tags = 1            "for highlighting ASP-style short tags
-		let php_parent_error_close = 1  "for highlighting parent error ] or )
-		let php_parent_error_open = 1   "for skipping an php end tag, if there exists 
-		                           "an open ( or [ without a closing one
-		"let php_oldStyle = 0            "for using old colorstyle
-		let php_noShortTags = 1         "don't sync <? ?> as php
-		let php_folding = 1             "for 1 folding classes and functions
-		                            "for 2 for folding all { } regions
-		let php_sync_method = -1 
-		        "			x=-1 to sync by search ( default )
-		        "			x>0 to sync at least x lines backwards
-		        "			x=0 to sync from start
 
 "set foldmethod=marker
 
@@ -130,7 +112,7 @@ filetype indent on
 
 execute pathogen#infect()
 
-" Colors 
+" Colors
 syntax on
 set t_Co=256
 "let xterm16_brightness  = 'high'         " 'high' is default
@@ -142,3 +124,6 @@ set background=dark
 colorscheme solarized8_high
 
 
+" show white space before the eol.
+highlight RedundantSpaces ctermbg=red guibg=red
+match RedundantSpaces /\s\+$/
