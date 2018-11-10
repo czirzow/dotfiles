@@ -1,17 +1,51 @@
 #!/bin/sh
+#
+# A simple way to install my preferred environment
+#
 
+
+# where we are working from
+CWD=`dirname $0`
+
+# a timestamp for backups.
+TS=$(date +%Y-%m-%d-%H-%M-%S)
+
+backup_dir="$HOME/dotfile.backup/$TS"
+[ ! -d $backup_dir ] && mkdir -p $backup_dir
+
+
+# basic config files to load into $HOME
 dotfiles="\
   .bashrc\
   .bash_profile\
   .gitconfig\
-  .vim\
   .vimrc\
   .cshrc\
   .tmux.conf\
 "
 
-home=~ 
-cwd=`pwd`
+# install dependencies
+declare -a post_commands=(
+
+  # Vim related stuff
+  ## backup ~/.vim directory to a backup
+    "mv ${HOME}/.vim ${backup_dir}"
+  ## and get our current files.
+    "cp -Rp $CWD/.vim $HOME/.vim"
+
+  ## This is required for vim-javascript and vim-jsx
+    "mkdir -p $HOME/.vim/autoload"
+    "curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim"
+
+  ## javascript and jsx syntax
+    "git clone https://github.com/pangloss/vim-javascript.git ${HOME}/.vim/bundle/vim-javascript"
+    "git clone https://github.com/mxw/vim-jsx.git $HOME/.vim/bundle/vim-jsx"
+
+  ## yes, solorazied8
+    "git clone https://github.com/lifepillar/vim-solarized8.git ${HOME}/.vim/pack/themes/opt/solarized8"
+
+)
+
 
 copy_file() {
   message=$1
@@ -22,20 +56,23 @@ copy_file() {
   cp -Rp ${from} ${to}
 }
 
+
 for dotfile in $dotfiles
 do
-  realfile="${home}/${dotfile}"
-  thisfile="${cwd}/${dotfile}"
+  realfile="${HOME}/${dotfile}"
+  thisfile="${CWD}/${dotfile}"
 
   if [ -e $realfile ]; then
-    if [ ! -e "${realfile}.cz" ]; then
-      copy_file "backup" $realfile "${realfile}.cz"
-    fi
+    copy_file "backup" $realfile "${backup_dir}/${dotfile}"
   fi
 
   copy_file "installing" "${thisfile}" "${realfile}"
-  echo
 
 done
 
+for cmd in "${post_commands[@]}"
+do
+  echo $cmd
+  $cmd
+done
 
