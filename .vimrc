@@ -2,6 +2,8 @@ version 8.0
 " 2018-10-20
 "
 
+" Initial 'set' commands {{{
+
 " not sure about these:
 "set nocompatible        " Use Vim defaults (much better!)
 "set ai                  " always set autoindenting on
@@ -12,11 +14,18 @@ set ruler               " show the cursor position all the time
 set et                  " in general, we want no tabs.
 set ts=4                " Number of spaces that a tab uses.
 set sw=2                " indentation is usually at 2 chars
-set modeline            " see
+set modeline            " see ???
+set modelines=1         " enable custom modes within loading of a file.
+set incsearch           " search as characters are entered
+set hlsearch            " highlight matches
+
 
 set listchars=tab:Â»\ ,trail:·,eol:\
+" }}} Initial 'set commands
 
 " Only do this part when compiled with support for autocommands
+" has("autocmd") {{{
+"   should review this area, some of it is really old.
 if has("autocmd")
 
 	"noremap <F8> :so `/usr/local/share/vim/vim61/tools/vimspell.sh %`<CR><CR>
@@ -104,26 +113,24 @@ if has("autocmd")
 		au BufWritePost *.bin set nomod | endif
 	augroup END
 endif
+" }}} has("autocmd")
 
-
-"set foldmethod=marker
 
 filetype indent on
 
+" autoloading things with pathogen
 execute pathogen#infect()
 
 " Colors
 syntax on
 set t_Co=256
-"let xterm16_brightness  = 'high'         " 'high' is default
-"let xterm16_colormap    = 'allblue'        " 'standard' is default
-"colors xterm16
 
 syntax enable
 set background=dark
 colorscheme solarized8_high
 
-
 " show white space before the eol.
 highlight RedundantSpaces ctermbg=red guibg=red
 match RedundantSpaces /\s\+$/
+
+" vim:foldmethod=marker:foldlevel=0
