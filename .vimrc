@@ -62,14 +62,6 @@ if has("autocmd")
 		autocmd FileType h,pl,c,cpp  set formatoptions=croq cindent comments=sr:/*,mb:*,ex:*/,:// softtabstop=4 noexpandtab sw=2 tabstop=2
 	augroup END
 
-	augroup php
-		au!
-		autocmd FileType php,php3  set binary formatoptions=croq cindent comments=s1:/*,mb:*,ex:*/,bO://,:# softtabstop=2 noexpandtab sw=2
-		map ;s :!php -l -d display_errors=1 %<CR>
-		map ;r :!php -d display_errors=1 -q %<CR>
-		set binary
-	augroup end
-
 
 	augroup puppet
 		au!
