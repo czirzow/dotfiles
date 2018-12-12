@@ -13,7 +13,7 @@ set ic                  " ignore case when searching
 set ruler               " show the cursor position all the time
 set et                  " in general, we want no tabs.
 set ts=4                " Number of spaces that a tab uses.
-set sw=2                " indentation is usually at 2 chars
+set sw=4                " indentation on shifting stuff
 set modeline            " see ???
 set modelines=1         " enable custom modes within loading of a file.
 set incsearch           " search as characters are entered
