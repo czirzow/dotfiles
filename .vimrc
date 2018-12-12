@@ -13,7 +13,7 @@ set ic                  " ignore case when searching
 set ruler               " show the cursor position all the time
 set et                  " in general, we want no tabs.
 set ts=4                " Number of spaces that a tab uses.
-set sw=2                " indentation is usually at 2 chars
+set sw=4                " indentation on shifting stuff
 set modeline            " see ???
 set modelines=1         " enable custom modes within loading of a file.
 set incsearch           " search as characters are entered
@@ -61,14 +61,6 @@ if has("autocmd")
 		au!
 		autocmd FileType h,pl,c,cpp  set formatoptions=croq cindent comments=sr:/*,mb:*,ex:*/,:// softtabstop=4 noexpandtab sw=2 tabstop=2
 	augroup END
-
-	augroup php
-		au!
-		autocmd FileType php,php3  set binary formatoptions=croq cindent comments=s1:/*,mb:*,ex:*/,bO://,:# softtabstop=2 noexpandtab sw=2
-		map ;s :!php -l -d display_errors=1 %<CR>
-		map ;r :!php -d display_errors=1 -q %<CR>
-		set binary
-	augroup end
 
 
 	augroup puppet
