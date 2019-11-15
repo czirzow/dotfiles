@@ -2,10 +2,10 @@ dotfiles
 ======
 my dot files; Reorganized
 
-install - the install script
-git/ - git configuration files
-vim/ - vim configuration
-shells/ - all the different shells and configs i use.
+    install - the install script
+    git/ - git configuration files
+    vim/ - vim configuration
+    shells/ - all the different shells and configs i use.
 
 TODO:
 ---------
@@ -22,3 +22,4 @@ TODO:
    -  dir, ls, vi, tab-completion
    - alert which shell your in on login.
 
+  
