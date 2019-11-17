@@ -22,6 +22,7 @@ dotfiles="\
   .vimrc\
   .cshrc\
   .tmux.conf\
+  .zprofile\
 "
 
 # install dependencies
