@@ -1,4 +1,4 @@
 dotfiles
 ========
 
-my dot files
+See: [README.zsh.md](README.zsh.md)
