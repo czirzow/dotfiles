@@ -119,7 +119,7 @@ set t_Co=256
 
 syntax enable
 set background=dark
-colorscheme solarized8_high
+colorscheme solarized
 
 " show white space before the eol.
 highlight RedundantSpaces ctermbg=red guibg=red
