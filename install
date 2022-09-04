@@ -58,6 +58,11 @@ copy_file() {
 }
 
 
+## bin directory.
+mkdir -p "${HOME}/bin"
+cp "${CWD}/bin/test.colors" "${HOME}/bin/"
+
+
 for dotfile in $dotfiles
 do
   realfile="${HOME}/${dotfile}"
