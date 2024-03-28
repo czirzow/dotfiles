@@ -6,7 +6,8 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific aliases and functions
-export EDITOR=vim
+export EDITOR=nvim
+IGNOREEOF=42
 
 set -o vi
 bind '"\e[A": history-search-backward'
@@ -22,13 +23,21 @@ ps1_git_branch() {
   [[ $PWD == "${HOME}/git/"* ]] && git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
   #[ -d .git ] && git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
 }
-PS1="\u@\h:\[\033[32m\]\w\[\033[33m\]\$(ps1_git_branch)\e[38;5;122m\$(ps1_docker_leader)\[\033[00m\]$ "
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
+}
+PS1="@\h:\[\033[32m\]\w\[\033[0m\]\\$ "
+PS1="@\h:\[\e[32m\]\w\[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "
+#PS1="\u@\h:\[\033[32m\]\w\[\033[33m\]\$(ps1_git_branch)\e[38;5;122m\$(ps1_docker_leader)\[\033[0m\]$ "
+
+PROMPT_COMMAND='echo -en "\033]0;@$(hostname)|$(pwd|cut -d "/" -f 4-100)\a"'
 
 # I've always liked the MSDOS dir command.
 dir () {
-  CLICOLOR_FORCE=1 ls -laFGw "$@" | less -XR
+  CLICOLOR_FORCE=1 ls -laFG --color=always "$@" | less -XR
 }
 alias ackless='ack --group --color \!* | less -XR'
+alias vi='nvim'
 
 export PAGER="less -XR"
 

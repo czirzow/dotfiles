@@ -5,7 +5,7 @@
 
 # User specific environment and startup programs
 
-PATH=$PATH:$HOME/bin
+PATH="$PATH:/opt/nvim-linux64/bin:$HOME/bin:$HOME/.local/bin"
 
 export PATH
 
