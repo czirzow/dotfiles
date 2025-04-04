@@ -72,9 +72,11 @@ xterm*|rxvt*)
     ;;
 esac
 
-export EDITOR=nvim
 export PAGER="less -XR"
+
+export EDITOR=nvim
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+alias vi='nvim'
 
 set -o vi
 bind '"\e[A": history-search-backward'
