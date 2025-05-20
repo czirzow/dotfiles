@@ -1,0 +1,24 @@
+- name: Development area
+  hosts: localhost
+
+
+  tasks:
+  - name: Packages for apt
+    become: yes
+    ansible.builtin.apt:
+      name:
+        - git
+      state: present
+
+  - name: Update submodules
+    tags:
+      - nvim
+    command:
+      cmd: git submodule update --force --init --recursive --jobs 4
+    changed_when: false
+
+  - name: Neovim
+    tags: nvim
+    import_role:
+      name: nvim
+
