@@ -7,7 +7,7 @@
   import_tasks: fedora.yml
   when: ansible_distribution == "Fedora"
 
-  - name: Remove files that will conflict with Stow
+- name: Remove files that will conflict with Stow
   loop:
     - .bashrc
     - .profile

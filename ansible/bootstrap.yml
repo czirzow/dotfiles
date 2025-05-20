@@ -17,13 +17,13 @@
       cmd: git submodule update --force --init --recursive --jobs 4
     changed_when: false
 
-  - name: Neovim
-    tags: nvim
-    import_role:
-      name: nvim
+    #  - name: Neovim
+    #tags: nvim
+    #import_role:
+    #  name: nvim
 
   - name: Stow
     tags: stow
     import_role:
-      name: role
+      name: stow
 
