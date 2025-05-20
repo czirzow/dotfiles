@@ -22,7 +22,7 @@ sudo apt install pip
 pip install ansible
 ''
 
-Add to ~/.bashrc
+Add to ~/.bash_alias
 export PATH="$PATH:/home/czirzow/.local/bin"
 '''
 
