@@ -77,11 +77,22 @@ xterm*|rxvt*)
     ;;
 esac
 
+
+cat <<HERE
+   #ctrl-r - reload session.
+   #ctrl-s - save session. HERE
+   #> tmux a -t $session
+tmux sessions:
+HERE
+tmux ls
+
+
 export PAGER="less -XR"
 
 export EDITOR=nvim
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 alias vi='nvim'
+speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
 
 set -o vi
 bind '"\e[A": history-search-backward'

@@ -12,6 +12,11 @@ esac
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
+# Set history format to include timestamps
+HISTTIMEFORMAT="%Y-%m-%d %T "
+
+
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 
@@ -43,7 +48,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -72,6 +77,27 @@ xterm*|rxvt*)
     ;;
 esac
 
+
+cat <<HERE
+   #ctrl-r - reload session.
+   #ctrl-s - save session. HERE
+   #> tmux a -t $session
+tmux sessions:
+HERE
+tmux ls
+
+
+export PAGER="less -XR"
+
+export EDITOR=nvim
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+alias vi='nvim'
+speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
+
+set -o vi
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -82,6 +108,11 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+    # I've always liked the MSDOS dir command.
+    dir () {
+      ls -laFG --color=yes "$@" | less -XR
+    }
+
 fi
 
 # colored GCC warnings and errors
