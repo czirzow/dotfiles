@@ -1,0 +1,3 @@
+[submodule "ansible/deps/neovim"]
+	path = ansible/deps/neovim
+	url = https://github.com/neovim/neovim.git
