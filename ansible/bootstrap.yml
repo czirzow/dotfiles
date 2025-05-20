@@ -22,3 +22,8 @@
     import_role:
       name: nvim
 
+  - name: Stow
+    tags: stow
+    import_role:
+      name: role
+
