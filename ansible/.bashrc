@@ -156,16 +156,23 @@ fi
 
 #FIXME: with ansible make var available in the environment
 MY_STANDARD_WORKING_ENV='buckland'
+ME='czirzow'
 
 if [ "${MY_STANDARD_WORKING_ENV}" = "${HOSTNAME}" ]; then
   PS_1_HOST='local'
 else
   PS_1_HOST=$HOSTNAME
 fi
+if [ "${ME}" == "$USER" ]; then
+  PS1_USER='me'
+else
+  PS1_USER=$USER
+fi
 
 export PS1='\
-\[\e[1;32m\]\u\
-\[\e[1;33m\]@$PS_1_HOST:\
+\[\e[1;32m\]$PS1_USER\
+\[\e[1;33m\]@\
+\[\e[1;32m\]$PS_1_HOST:\
 \[\e[1;94m\]\w\
 \[\e[1;33m\]$(__git_ps1 "(%s)")\
 \[\e[1;32m\]$([ \j -gt 0 ] && echo "*")\
