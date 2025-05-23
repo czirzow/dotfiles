@@ -146,3 +146,29 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# source git file containing __git_ps1 function
+if [ -f /usr/lib/git-core/git-sh-prompt ]; then
+  source /usr/lib/git-core/git-sh-prompt
+elif [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
+  source /usr/share/git-core/contrib/completion/git-prompt.sh
+fi
+
+#FIXME: with ansible make var available in the environment
+MY_STANDARD_WORKING_ENV='buckland'
+
+if [ "${MY_STANDARD_WORKING_ENV}" = "${HOSTNAME}" ]; then
+  PS_1_HOST='local'
+else
+  PS_1_HOST=$HOSTNAME
+fi
+
+export PS1='\
+\[\e[1;32m\]\u\
+\[\e[1;33m\]@$PS_1_HOST:\
+\[\e[1;94m\]\w\
+\[\e[1;33m\]$(__git_ps1 "(%s)")\
+\[\e[1;32m\]$([ \j -gt 0 ] && echo "*")\
+\[\e[1;90m\]\$ \
+\[\e[0m\]\
+'
