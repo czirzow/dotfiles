@@ -31,8 +31,55 @@ configuring a ansible network for booting up
        '''
     . */etc/ansible
 
-   ## video05
+   . condense playbooks
+     . use variables.
+   . running on specific hosts:
+     the inventory file:
+       . is an ini file:
+         '''
+         [web_servers]
+         ip-address1
+         ip-address2
+         [db servers]
+         ip-address3
+
+      playbook:
+        hosts: [web_servers]
+
+  ## video11
+   #add tags
+     #tag: group_name,host_type,package_name,server_type
+     # ie.,
+     #   myblog,db,mariadb,ubuntu
+     #   myblog,web,apache,fedora
+
+     # make a host file that is added to server
+     #files/etc/host -> hostgroup:/etc/hosts
+     - name: copy file
+       tags: grp1,db,mariadb,httpd
+       copy:
+         src: etc/hosts
+         dest: /etc/hosts
+         owner: root
+         group: root
+         mode: 0644
+
+    #
+    # Look into terraform
+    # setting up a server farm?
        
+   ## video12
+    # ensure that centos has httpd enabled and started.
+    -name: start httpd (CentOS)
+      tags: grp2,web,httpd,centos
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+    when: ansible_distribution == "CentOS"
+
+    ## video13
+
 
 
 website referenc
