@@ -21,6 +21,8 @@
     #tags: nvim
     #import_role:
     #  name: nvim
+    
+  # TODO: add bash-completion.
 
   - name: Stow
     tags: stow
