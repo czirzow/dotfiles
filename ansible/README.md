@@ -78,7 +78,110 @@ configuring a ansible network for booting up
         enabled: yes
     when: ansible_distribution == "CentOS"
 
-    ## video13
+  ## video13
+    # user managment
+
+    -- hosts: all
+      become: true
+      tasks:
+
+    # Only in bootstrap.yml
+      - name: create simone user
+        tags: always
+        usesr: simone
+        groups: root
+
+      - name: add ssh key for simone
+        tags: always
+        authorized_key:
+          user: simone
+          # ~/.ssh/simone.ansible.pub
+          key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHHan3MHYkfw7j9uvjuvUGZ73ixlZMCPX0AOy/6f+hf7 simone@ansible"
+
+       - name: add suders file for simone
+         tags: always
+         copy: 
+           src: suder_simone
+           dest: /etc/sudusers.d/simone
+           owner: root
+           owner: root
+           mode: 0440
+    #/ Only in bootstrap.yml
+
+    # create ansible.cfg
+    [defaults]
+    inventory = inventory
+    private_key_file = ~/.ssh/simone.ansible
+    remote_user = simone
+
+    # bootstrap.yml
+    # add requirements for setup in bootstrap.yml
+    # make a site.yml
+
+  ## video14
+  # create roles with site.yml
+    # dir structure:
+    # hostgroup/roles/host_type/
+               /roles/host_type/tasks/
+               /roles/host_type/tasks/main.yml
+               /roles/host_type/files/
+               /ansible.cfg
+                ...
+    # roles/tasks/main.yml
+
+  ## video15
+  # Host Variables
+     mkdir host_vars
+     cat inventory
+
+     host_vara/IP_ADDRESS-1.yml:
+     # centos
+     apache_package_name: apache2
+     pache_service: apache2
+     php_package_name: livapache2-php-mod
+
+     host_vars/IP_ADDRESS-2.yml
+     # ubuntu
+     apache_service: httpd
+     apache_service: apache
+     php_package_name: php
+
+  # Handler
+  # if a change is happened.
+    # notify: restart_apache
+
+  ## video16
+  # Templates
+    # Setting up roles/base/templates
+    # cp file /etc/sshd_config roles/base/templates/sshd_config_ubuntu.j2
+    # add: 
+    #
+    #     AllowUsers {{ ssh_users }}
+    #
+    #  in hosts_vars/IP_address.yml
+    #
+    # add variable:
+    #
+    #     ssh_users:"simone"
+    #     ssh_config_file: sshd_config_ubuntu.j2
+    #
+
+
+    
+    
+
+
+
+
+
+
+    
+  
+
+
+
+ 
+ 
 
 
 
