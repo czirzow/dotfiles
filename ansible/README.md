@@ -1,11 +1,27 @@
 
 TODO:
 ==
+   . Stucure for dirs:
+      roles/
+      files/
+      host_vars/
+      host-ansible.yml   # configuration for an ansible server
+      host-workbox.yml   # configuration that includes things like neovim, tmux, 
+                         # etc...
+      host-dotfiles.yml  # a host that just needs my working environment
+                         # make changes
+                         
+    
+   . bootstrap.yml:
+     make it do just the things always wanted done on all hosts.
+     ie: atp/dnf update.
+
+     
    . add all the rest of the .* files to repo
    . version the tree main, old-config
    . add other stuff not listed.
    . apps for mac, ?
-   . rename repo to myAnsible
+   . rename repo to myAnsible?
 
 
 TASKS:
