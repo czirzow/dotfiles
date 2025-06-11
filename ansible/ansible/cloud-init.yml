@@ -11,6 +11,7 @@ users:
     sudo: ["ALL=(ALL) NOPASSWD:ALL"]
 
 #cloud-config
+## only for centOS
 packages:
   - openssh-server
 runcmd:
