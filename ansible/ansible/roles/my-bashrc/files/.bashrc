@@ -77,21 +77,25 @@ xterm*|rxvt*)
     ;;
 esac
 
-
-cat <<HERE
-   #ctrl-r - reload session.
-   #ctrl-s - save session. HERE
-   #> tmux a -t $session
-tmux sessions:
+# if we have tmux installed lets show the sessions:
+if [ -x $(which tmux) ]; then
+    cat <<HERE
+    #ctrl-r - reload session.
+    #ctrl-s - save session. HERE
+    #> tmux a -t $session
+  tmux sessions:
 HERE
-tmux ls
-
+    tmux ls
+fi
 
 export PAGER="less -XR"
 
-export EDITOR=nvim
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-alias vi='nvim'
+vi=$(which nvim || which vim || which vi)
+if [ -x "${vi}" ]; then
+    export EDITOR="${vi}"
+    alias vi="${EDITOR}"
+fi
+
 speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
 
 set -o vi
