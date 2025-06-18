@@ -18,6 +18,10 @@
     when: ansible_distribution == "Ubuntu"
 
 - hosts: all
+  roles:
+    - my-bashrc
+
+- hosts: all
   tags: always
   become: true
   tasks:

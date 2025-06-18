@@ -10,12 +10,12 @@
         - git
       state: present
 
-  - name: Update submodules
-    tags:
-      - nvim
-    command:
-      cmd: git submodule update --force --init --recursive --jobs 4
-    changed_when: false
+      #- name: Update submodules
+      #tags:
+      #- nvim
+      #command:
+      #cmd: git submodule update --force --init --recursive --jobs 4
+      #changed_when: false
 
     #  - name: Neovim
     #tags: nvim
