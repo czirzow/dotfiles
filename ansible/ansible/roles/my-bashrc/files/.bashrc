@@ -78,7 +78,8 @@ xterm*|rxvt*)
 esac
 
 # if we have tmux installed lets show the sessions:
-if [ -x $(which tmux) ]; then
+tmux=$(which tmux 2>/dev/null)
+if [ -x "${tmux}" ]; then
     cat <<HERE
     #ctrl-r - reload session.
     #ctrl-s - save session. HERE
@@ -88,15 +89,14 @@ HERE
     tmux ls
 fi
 
+#FIXME: less vs more
 export PAGER="less -XR"
 
-vi=$(which nvim || which vim || which vi)
+vi=$(which nvim 2>/dev/null || which vim 2>/dev/null || which vi 2>/dev/null)
 if [ -x "${vi}" ]; then
     export EDITOR="${vi}"
     alias vi="${EDITOR}"
 fi
-
-speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
 
 set -o vi
 bind '"\e[A": history-search-backward'
@@ -113,9 +113,16 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
     # I've always liked the MSDOS dir command.
-    dir () {
-      ls -laFG --color=yes "$@" | less -XR
-    }
+
+    if [ -x /usr/bin/less ]; then
+        less_is_more='less -XR'
+    else
+        less_is_more='more'
+    fi
+    alias dir='ls -laFG --color=always "$@" | $less_is_more'
+    #dir () {
+      #ls -laFG --color=yes "$@" | less -XR
+    #}
 
 fi
 
@@ -158,22 +165,24 @@ elif [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
   source /usr/share/git-core/contrib/completion/git-prompt.sh
 fi
 
-#FIXME: with ansible make var available in the environment
-MY_STANDARD_WORKING_ENV='buckland'
-ME='czirzow'
+if [ type __git_ps1 > /dev/null 2>&1 ]; then
 
-if [ "${MY_STANDARD_WORKING_ENV}" = "${HOSTNAME}" ]; then
-  PS_1_HOST='local'
-else
-  PS_1_HOST=$HOSTNAME
-fi
-if [ "${ME}" == "$USER" ]; then
-  PS1_USER='me'
-else
-  PS1_USER=$USER
-fi
+  #FIXME: with ansible make var available in the environment
+  MY_STANDARD_WORKING_ENV='buckland'
+  ME='czirzow'
 
-export PS1='\
+  if [ "${MY_STANDARD_WORKING_ENV}" = "${HOSTNAME}" ]; then
+    PS_1_HOST='local'
+  else
+    PS_1_HOST=$HOSTNAME
+  fi
+  if [ "${ME}" == "$USER" ]; then
+    PS1_USER='me'
+  else
+    PS1_USER=$USER
+  fi
+  
+  export PS1='\
 \[\e[1;32m\]$PS1_USER\
 \[\e[1;33m\]@\
 \[\e[1;32m\]$PS_1_HOST:\
@@ -183,3 +192,4 @@ export PS1='\
 \[\e[1;90m\]\$ \
 \[\e[0m\]\
 '
+fi
