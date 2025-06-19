@@ -1,3 +1,8 @@
+TODO:
+==
+   . Evaluate my standard configs.
+      . add all the rest of the .* files to repo
+      . add other stuff not listed.
 
 move current ansible config to directory: localhost
 

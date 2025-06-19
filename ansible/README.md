@@ -16,14 +16,8 @@ Structure for dirs:
          host_vars/
          roles/
 
-note:
-   . bootstrap.yml:
+*note:* bootstrap.yml:
      make it do just the things always wanted done on all hosts.
-         ie: atp/dnf update.
 
-TODO:
-==
-   . Evaluate my standard configs.
-      . add all the rest of the .* files to repo
-      . add other stuff not listed.
+     ie: ensure apt/dnf is up to date*
 
