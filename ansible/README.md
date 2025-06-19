@@ -1,66 +1,29 @@
 
-TODO:
+Configurations for my Network.
+
+
+Structure for dirs:
 ==
-   . Stucure for dirs:
 
       host-ansible/   # configuration for an ansible server
          bootstrap.yml
          inventory
          host_vars/
-         rols/
-      host-workbox/   # configuration that includes things like neovim, tmux, dotfiles
+         roles/
+      host-workbox/   # configuration for a box i work on.
          bootstrap.yml
          inventory
          host_vars/
-         rols/
-                        
+         roles/
+
+note:
    . bootstrap.yml:
      make it do just the things always wanted done on all hosts.
-     ie: atp/dnf update.
+         ie: atp/dnf update.
 
-     
-   . add all the rest of the .* files to repo
-   . version the tree main, old-config
-   . add other stuff not listed.
-
-
-
- 
- 
-
-
-
-website referenc
-
-  https://phelipetls.github.io/posts/introduction-to-ansible/
-
-
-Intro
+TODO:
 ==
-
-
-
-Installation
-==
-
-'''
-git clone dotfiles
-'''
-
-pip shouldn't be installed by default but if it is double check what version of python you have to ensure that is the correctp
-
-'''
-sudo apt install pip
-pip install ansible
-''
-
-Add to ~/.bash_alias
-export PATH="$PATH:/home/czirzow/.local/bin"
-'''
-
-'''
-cd dotfiles
-ansible-playbook bootstrap.yml
-'''
-
+   . Evaluate my standard configs.
+      . add all the rest of the .* files to repo
+      . add other stuff not listed.
 
