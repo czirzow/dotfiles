@@ -112,17 +112,16 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
-    # I've always liked the MSDOS dir command.
 
+    # I've always liked the MSDOS dir command.
     if [ -x /usr/bin/less ]; then
-        less_is_more='less -XR'
+      less_is_more='less -XR'
     else
-        less_is_more='more'
+      less_is_more='more'
     fi
-    alias dir='ls -laFG --color=always "$@" | $less_is_more'
-    #dir () {
-      #ls -laFG --color=yes "$@" | less -XR
-    #}
+    dir () {
+      ls -laFG --color=yes "$@" | $less_is_more
+    }
 
 fi
 
@@ -165,7 +164,6 @@ elif [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
   source /usr/share/git-core/contrib/completion/git-prompt.sh
 fi
 
-if [ type __git_ps1 > /dev/null 2>&1 ]; then
 
   #FIXME: with ansible make var available in the environment
   MY_STANDARD_WORKING_ENV='buckland'
@@ -181,15 +179,18 @@ if [ type __git_ps1 > /dev/null 2>&1 ]; then
   else
     PS1_USER=$USER
   fi
+  GIT_PS1=''
+  if [ type __git_ps1 > /dev/null 2>&1 ]; then
+    GIT_PS1='\[\e[1;33m\]$(__git_ps1 "(%s)")\'
+  fi
   
   export PS1='\
 \[\e[1;32m\]$PS1_USER\
 \[\e[1;33m\]@\
 \[\e[1;32m\]$PS_1_HOST:\
 \[\e[1;94m\]\w\
-\[\e[1;33m\]$(__git_ps1 "(%s)")\
+'${GIT_PS1}'\
 \[\e[1;32m\]$([ \j -gt 0 ] && echo "*")\
 \[\e[1;90m\]\$ \
 \[\e[0m\]\
 '
-fi

@@ -1,0 +1,9 @@
+
+move current ansible config to directory: localhost
+
+# make this a script that greps for TODO: and FIXME:
+# . look for text files that contain the words 'TODO:' or 'FIXME:' 
+# . grep and list files that are not binary.
+# ie:
+#   find . -type f -and  -exec grep --color 'TODO:' {} \; 
+ 
