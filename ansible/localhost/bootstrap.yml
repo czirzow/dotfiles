@@ -1,0 +1,19 @@
+- name: Development area
+  hosts: localhost
+
+
+  tasks:
+  - name: Packages for apt
+    become: yes
+    ansible.builtin.apt:
+      name:
+        - git
+      state: present
+    
+  # TODO: add bash-completion.
+
+  - name: Stow
+    tags: stow
+    import_role:
+      name: stow
+

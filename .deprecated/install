@@ -1,0 +1,12 @@
+git clone https://github.com/czirzow/dotfiles.git
+cd dotfiles
+git checkout add-ansible
+
+install_app=dnf
+sudo $(install_app) -y install python3-libdnf5
+sudo $(install_app) -y install pip
+pip install ansible
+
+ansible-playbook bootstrap.yml
+echo export PATH="$PATH:/home/czirzow/.local/bin" > ~/.bash_alias
+

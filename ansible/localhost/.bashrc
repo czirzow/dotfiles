@@ -77,11 +77,22 @@ xterm*|rxvt*)
     ;;
 esac
 
+
+cat <<HERE
+   #ctrl-r - reload session.
+   #ctrl-s - save session. HERE
+   #> tmux a -t $session
+tmux sessions:
+HERE
+tmux ls
+
+
 export PAGER="less -XR"
 
 export EDITOR=nvim
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 alias vi='nvim'
+speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
 
 set -o vi
 bind '"\e[A": history-search-backward'
@@ -135,3 +146,36 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# source git file containing __git_ps1 function
+if [ -f /usr/lib/git-core/git-sh-prompt ]; then
+  source /usr/lib/git-core/git-sh-prompt
+elif [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
+  source /usr/share/git-core/contrib/completion/git-prompt.sh
+fi
+
+#FIXME: with ansible make var available in the environment
+MY_STANDARD_WORKING_ENV='buckland'
+ME='czirzow'
+
+if [ "${MY_STANDARD_WORKING_ENV}" = "${HOSTNAME}" ]; then
+  PS_1_HOST='local'
+else
+  PS_1_HOST=$HOSTNAME
+fi
+if [ "${ME}" == "$USER" ]; then
+  PS1_USER='me'
+else
+  PS1_USER=$USER
+fi
+
+export PS1='\
+\[\e[1;32m\]$PS1_USER\
+\[\e[1;33m\]@\
+\[\e[1;32m\]$PS_1_HOST:\
+\[\e[1;94m\]\w\
+\[\e[1;33m\]$(__git_ps1 "(%s)")\
+\[\e[1;32m\]$([ \j -gt 0 ] && echo "*")\
+\[\e[1;90m\]\$ \
+\[\e[0m\]\
+'

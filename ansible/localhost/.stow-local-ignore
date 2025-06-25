@@ -1,0 +1,8 @@
+
+^/roles
+^/deps
+
+^/README.md
+^/bootstrap.yml
+
+^/\.stowrc
