@@ -1,0 +1,12 @@
+#cloud-config
+users:
+  - default
+  - name: czirzow
+    gecos: Curt
+    groups: users,admin
+    shell: /bin/bash
+    lock_passwd: false
+    passwd: '*'
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHHan3MHYkfw7j9uvjuvUGZ73ixlZMCPX0AOy/6f+hf7 czirzow@buckland
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
