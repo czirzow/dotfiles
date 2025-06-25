@@ -1,0 +1,8 @@
+#cloud-config
+## only for centOS
+packages:
+  - openssh-server
+runcmd:
+  - [ systemctl, daemon-reload ]
+  - [ systemctl, enable, sshd ]
+  - [ systemctl, start, --no-block, sshd ]
