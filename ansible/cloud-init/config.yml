@@ -19,12 +19,11 @@ config:
         ssh_authorized_keys:
           - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHHan3MHYkfw7j9uvjuvUGZ73ixlZMCPX0AOy/6f+hf7 czirzow@buckland
         sudo: ["ALL=(ALL) NOPASSWD:ALL"]
-    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
-packages:
-  - openssh-server
-runcmd:
-  - [ systemctl, daemon-reload ]
-  - [ systemctl, enable, sshd ]
-  - [ systemctl, start, --no-block, sshd ]
+    packages:
+      - openssh-server
+    runcmd:
+      - [ systemctl, daemon-reload ]
+      - [ systemctl, enable, sshd ]
+      - [ systemctl, start, --no-block, sshd ]
 project: default
 
