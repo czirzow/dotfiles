@@ -1,8 +1,0 @@
-#cloud-config
-## only for centOS
-packages:
-  - sshd
-runcmd:
-  - [ systemctl, daemon-reload ]
-  - [ systemctl, enable, sshd ]
-  - [ systemctl, start, --no-block, sshd ]
