@@ -15,6 +15,7 @@ config:
       - default
       - name: czirzow
         gecos: Curt
+        shell: /bin/bash
         passwd: '*'
         ssh_authorized_keys:
           - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHHan3MHYkfw7j9uvjuvUGZ73ixlZMCPX0AOy/6f+hf7 czirzow@buckland
