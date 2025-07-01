@@ -10,13 +10,6 @@
     changed_when: false
     when: ansible_distribution == "CentOS"
 
-  - name: update repository index (Ubuntu)
-    tags: always
-    apt:
-      update_cache: yes
-    changed_when: false
-    when: ansible_distribution == "Ubuntu"
-
 - hosts: all
   roles:
     - my-bashrc
