@@ -1,0 +1,7 @@
+
+- name: add .bashrc file
+  tags: my-bashrc
+  copy: 
+    src: .bashrc
+    dest: ~/
+    mode: 0644
