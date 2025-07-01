@@ -1,3 +1,11 @@
+---
+# I prefer less, it has better keyboard navigation.
+- name: less is more!
+  become: true
+  apt:
+    name:
+      - less
+    state: latest
 
 - name: add .bashrc file
   tags: my-bashrc
