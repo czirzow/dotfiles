@@ -2,7 +2,7 @@
 - hosts: all
   become: true
   pre_tasks:
-  - name: install updates (CentOS)
+  - name: update repository index
     tags: always
     dnf: 
       update_only: yes
