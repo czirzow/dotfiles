@@ -5,6 +5,7 @@
   apt:
     name:
       - less
+      - bash-completion
     state: latest
 
 - name: add .bashrc file
