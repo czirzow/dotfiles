@@ -1,0 +1,23 @@
+---
+
+- name: install script for neovim
+  tags: my-neovim
+  become: true
+  copy: 
+    src: install-neovim
+    dest: ~/
+    mode: 0755
+
+
+- name: run script for neovim
+  tags: my-neovim
+  become: true
+  shell: ~/install-neovim
+  register: neovim_result
+  changed_when: "'changed' in neovim_result.stdout"
+
+
+# copy .conf/nvim/* over
+# create a .bashrc.d/nvim.sh ?
+#
+#
