@@ -1,4 +1,12 @@
 
+- name: less is more!
+  become: true
+  dnf:
+    name:
+      - less
+    state: latest
+  
+
 - name: add .bashrc file
   tags: my-bashrc
   copy: 
