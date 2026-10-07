@@ -6,6 +6,7 @@
     name:
       - less
       - bash-completion
+      - git
     state: latest
 
 - name: add .bashrc file
