@@ -180,7 +180,7 @@ fi
     PS1_USER=$USER
   fi
   GIT_PS1=''
-  if [ __git_ps1 > /dev/null 2>&1 ]; then
+  if [ $(type -t __git_ps1) == "function" ]; then
     GIT_PS1='\[\e[1;33m\]$(__git_ps1 "(%s)")\'
   fi
   
